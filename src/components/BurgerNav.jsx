@@ -4,46 +4,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function BurgerNav() {
-  // window.addEventListener("DOMContentLoaded", () => {
+  const [isActive, setIsActive] = useState(false);
 
-  // });
-
-  const burgerBtn = document.getElementById("burger-btn");
-  const burgerMenu = document.querySelector(".menu--list--container");
-  const exitBtn = document.querySelector(".exit--cross");
-
-  if (burgerBtn) {
-    burgerBtn.addEventListener(
-      "click",
-      () => {
-        // console.log("clicked!");
-        burgerMenu.style.transform = "translateX(0)";
-      },
-      true
-    );
-  }
-
-  if (exitBtn) {
-    exitBtn.addEventListener(
-      "click",
-      () => {
-        // console.log("button click!");
-        burgerMenu.style.transform = "translateX(250px)";
-      },
-      false
-    );
+  function toggle() {
+    setIsActive(!isActive);
+    console.log(isActive);
   }
 
   return (
-    <div id="burger-btn">
-      <div className="burger--container">
+    <div>
+      <div className="burger--container" onClick={toggle}>
         <span className="menu--text">Menu</span>
-        {/*<input id="menu--toggle" type="checkbox" />*/}
         <label className="burger" htmlFor="menu--toggle">
           <span className="layer"></span>
         </label>
       </div>
-      <div className="menu--list--container" id="burger-menu">
+      <div
+        className={`menu--list--container ${isActive ? "active" : "inactive"}`}
+      >
         <ul className="burger--nav--menu">
           <a href="#">
             <li className="burger--nav--menu--item">menu item 1</li>
@@ -58,7 +36,11 @@ export default function BurgerNav() {
             <li className="burger--nav--menu--item">menu item 4</li>
           </a>
         </ul>
-        <FontAwesomeIcon icon={faX} className="black exit--cross" />
+        <FontAwesomeIcon
+          icon={faX}
+          className="black exit--cross"
+          onClick={toggle}
+        />
       </div>
     </div>
   );

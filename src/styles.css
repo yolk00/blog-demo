@@ -185,6 +185,10 @@ body {
   z-index: 5;
 }
 
+.active {
+  transform: translateX(0);
+}
+
 .exit--cross {
   padding: 15px 15px 0 0;
   align-self: flex-end;
